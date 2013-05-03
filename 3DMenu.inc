@@ -193,7 +193,7 @@ public OnPlayerKeyStateChange(playerid,newkeys,oldkeys)
 		new MenuID = SelectedMenu[playerid];
 	    if(newkeys == KEY_NO)
 	    {
-	        new text[128],materialsize,fontface[128],fontsize,bold,fontcolor,backcolor,textalignment;
+	        new text[128],materialsize,fontface[32],fontsize,bold,fontcolor,backcolor,textalignment;
 			GetDynamicObjectMaterialText(MenuInfo[MenuID][Objects][SelectedBox[playerid]],0,text,materialsize,fontface,fontsize,bold,fontcolor,backcolor,textalignment);
 			SetDynamicObjectMaterialText(MenuInfo[MenuID][Objects][SelectedBox[playerid]],0,text,materialsize,fontface,fontsize,bold,fontcolor,MenuInfo[MenuID][UnselectColor][SelectedBox[playerid]],textalignment);
 			MoveDynamicObject(MenuInfo[MenuID][Objects][SelectedBox[playerid]],MenuInfo[MenuID][OrigPosX][SelectedBox[playerid]],MenuInfo[MenuID][OrigPosY][SelectedBox[playerid]],MenuInfo[MenuID][OrigPosZ][SelectedBox[playerid]],1.0);
@@ -205,7 +205,7 @@ public OnPlayerKeyStateChange(playerid,newkeys,oldkeys)
 		}
 		if(newkeys == KEY_YES)
 	    {
-	        new text[128],materialsize,fontface[128],fontsize,bold,fontcolor,backcolor,textalignment;
+	        new text[128],materialsize,fontface[32],fontsize,bold,fontcolor,backcolor,textalignment;
 			GetDynamicObjectMaterialText(MenuInfo[MenuID][Objects][SelectedBox[playerid]],0,text,materialsize,fontface,fontsize,bold,fontcolor,backcolor,textalignment);
 			SetDynamicObjectMaterialText(MenuInfo[MenuID][Objects][SelectedBox[playerid]],0,text,materialsize,fontface,fontsize,bold,fontcolor,MenuInfo[MenuID][UnselectColor][SelectedBox[playerid]],textalignment);
 	        MoveDynamicObject(MenuInfo[MenuID][Objects][SelectedBox[playerid]],MenuInfo[MenuID][OrigPosX][SelectedBox[playerid]],MenuInfo[MenuID][OrigPosY][SelectedBox[playerid]],MenuInfo[MenuID][OrigPosZ][SelectedBox[playerid]],1.0);
@@ -234,7 +234,7 @@ stock CancelSelect3DMenu(playerid)
 	if(!IsPlayerConnected(playerid)) return -1;
 	if(SelectedMenu[playerid] == -1) return -1;
 	new MenuID = SelectedMenu[playerid];
-	new text[128],materialsize,fontface[128],fontsize,bold,fontcolor,backcolor,textalignment;
+	new text[128],materialsize,fontface[32],fontsize,bold,fontcolor,backcolor,textalignment;
 	GetDynamicObjectMaterialText(MenuInfo[MenuID][Objects][SelectedBox[playerid]],0,text,materialsize,fontface,fontsize,bold,fontcolor,backcolor,textalignment);
 	SetDynamicObjectMaterialText(MenuInfo[MenuID][Objects][SelectedBox[playerid]],0,text,materialsize,fontface,fontsize,bold,fontcolor,MenuInfo[MenuID][UnselectColor][SelectedBox[playerid]],textalignment);
 	MoveDynamicObject(MenuInfo[MenuID][Objects][SelectedBox[playerid]],MenuInfo[MenuID][OrigPosX][SelectedBox[playerid]],MenuInfo[MenuID][OrigPosY][SelectedBox[playerid]],MenuInfo[MenuID][OrigPosZ][SelectedBox[playerid]],1.0);
