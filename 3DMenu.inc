@@ -1,5 +1,5 @@
 //3DMenu. Author: SDraw
-//Original post are on forum.sa-mp.com, pawno.ru
+//Original posts are on forum.sa-mp.com, pawno.ru
 /* Fake natives. Thanks to TheArcher.
 native Create3DMenu(Float:x,Float:y,Float:z,Float:rotation,boxes,playerid);
 native SetBoxText(MenuID,box,text[],materialsize,fontface[],fontsize,bold,fontcolor,selectcolor,unselectcolor,textalignment);
