@@ -43,6 +43,7 @@ stock Create3DMenu(Float:x,Float:y,Float:z,Float:rotation,boxes,playerid)
       		GetDynamicObjectPos(MenuInfo[i][Objects][b],MenuInfo[i][OrigPosX][b],MenuInfo[i][OrigPosY][b],MenuInfo[i][OrigPosZ][b]);
 		}
 		MenuInfo[i][IsExist] = true;
+		if(playerid != -1) Streamer_Update(playerid);
 		return i;
 	}
 	return -1;
