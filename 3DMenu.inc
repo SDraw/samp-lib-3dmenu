@@ -19,7 +19,7 @@ enum MenuParams { Float:Rotation,Boxes,bool:IsExist,
 new MenuInfo[MAX_3DMENUS][MenuParams];
 
 //Callbacks
-forward OnPlayerSelect3DMenuBox(playerid,MenuID,selected);
+forward OnPlayerSelect3DMenuBox(playerid,MenuID,boxid);
 forward OnPlayerChange3DMenuBox(playerid,MenuID,boxid);
 
 stock Create3DMenu(Float:x,Float:y,Float:z,Float:rotation,boxes,playerid)
