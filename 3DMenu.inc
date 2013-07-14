@@ -8,14 +8,14 @@ native CancelSelect3DMenu(playerid);
 native Destroy3DMenu(MenuID);
 */
 
-#define MAX_3DMENUS (MAX_PLAYERS+10)
+#define MAX_3DMENUS (MAX_PLAYERS)
 #define MAX_BOXES (16)
 
 new SelectedMenu[MAX_PLAYERS];
 new SelectedBox[MAX_PLAYERS];
 enum MenuParams { Float:Rotation,Boxes,bool:IsExist,
 	Objects[MAX_BOXES],Float:OrigPosX[MAX_BOXES],Float:OrigPosY[MAX_BOXES],Float:OrigPosZ[MAX_BOXES],
-	Float:AddingX,Float:AddingY,SelectColor[MAX_BOXES],UnselectColor[MAX_BOXES] };
+	Float:AddingX,Float:AddingY,SelectColor[MAX_BOXES],UnselectColor[MAX_BOXES],Player };
 new MenuInfo[MAX_3DMENUS][MenuParams];
 
 //Callbacks
@@ -24,7 +24,7 @@ forward OnPlayerChange3DMenuBox(playerid,MenuID,boxid);
 
 stock Create3DMenu(Float:x,Float:y,Float:z,Float:rotation,boxes,playerid)
 {
-	if(boxes > MAX_BOXES || boxes <= 0) return -1;
+	if(boxes > MAX_BOXES || boxes <= 0 || playerid < 0 || !IsPlayerConnected(playerid)) return -1;
 	for(new i = 0; i < MAX_3DMENUS; i++)
 	{
 	    if(MenuInfo[i][IsExist]) continue;
@@ -43,7 +43,8 @@ stock Create3DMenu(Float:x,Float:y,Float:z,Float:rotation,boxes,playerid)
       		GetDynamicObjectPos(MenuInfo[i][Objects][b],MenuInfo[i][OrigPosX][b],MenuInfo[i][OrigPosY][b],MenuInfo[i][OrigPosZ][b]);
 		}
 		MenuInfo[i][IsExist] = true;
-		if(playerid != -1) Streamer_Update(playerid);
+		MenuInfo[i][Player] = playerid;
+		Streamer_Update(playerid);
 		return i;
 	}
 	return -1;
@@ -56,7 +57,8 @@ stock SetBoxText(MenuID,box,text[],materialsize,fontface[],fontsize,bold,fontcol
 	if(MenuInfo[MenuID][Objects][box] == INVALID_OBJECT_ID) return -1;
 	MenuInfo[MenuID][SelectColor][box] = selectcolor;
 	MenuInfo[MenuID][UnselectColor][box] = unselectcolor;
-	SetDynamicObjectMaterialText(MenuInfo[MenuID][Objects][box],0,text,materialsize,fontface,fontsize,bold,fontcolor,unselectcolor,textalignment);
+	if(SelectedBox[MenuInfo[MenuID][Player]] == box) SetDynamicObjectMaterialText(MenuInfo[MenuID][Objects][box],0,text,materialsize,fontface,fontsize,bold,fontcolor,selectcolor,textalignment);
+	else SetDynamicObjectMaterialText(MenuInfo[MenuID][Objects][box],0,text,materialsize,fontface,fontsize,bold,fontcolor,unselectcolor,textalignment);
 	return 1;
 }
 
@@ -64,6 +66,7 @@ stock Select3DMenu(playerid,MenuID)
 {
 	if(!IsPlayerConnected(playerid)) return -1;
 	if(!MenuInfo[MenuID][IsExist]) return -1;
+	if(MenuInfo[MenuID][Player] != playerid) return -1;
 	if(SelectedMenu[playerid] != -1) CancelSelect3DMenu(playerid);
 	SelectedBox[playerid] = 0;
 	new text[128],materialsize,fontface[128],fontsize,bold,fontcolor,backcolor,textalignment;
@@ -84,11 +87,12 @@ public OnFilterScriptInit()
 	}
 	for(new i = 0; i < MAX_3DMENUS; i++)
 	{
-	    for(new b = 0; b < MAX_BOXES; b++) MenuInfo[i][Objects][b] = INVALID_OBJECT_ID;
-     	MenuInfo[i][Boxes] = 0;
+	    	for(new b = 0; b < MAX_BOXES; b++) MenuInfo[i][Objects][b] = INVALID_OBJECT_ID;
+     		MenuInfo[i][Boxes] = 0;
 	 	MenuInfo[i][IsExist] = false;
 	 	MenuInfo[i][AddingX] = 0.0;
  		MenuInfo[i][AddingY] = 0.0;
+ 		MenuInfo[i][Player] = -1;
 	}
  	if(funcidx("menu3d_OnFilterScriptInit") != -1) return CallLocalFunction("menu3d_OnFilterScriptInit", "");
 	return 1;
@@ -127,7 +131,8 @@ public OnGameModeInit()
 	    MenuInfo[i][Boxes] = 0;
 	    MenuInfo[i][IsExist] = false;
 	    MenuInfo[i][AddingX] = 0.0;
- 		MenuInfo[i][AddingY] = 0.0;
+ 	    MenuInfo[i][AddingY] = 0.0;
+ 	    MenuInfo[i][Player] = -1;
 	}
 	if(funcidx("menu3d_OnGameModeInit") != -1) return CallLocalFunction("menu3d_OnGameModeInit", "");
 	return 1;
@@ -261,5 +266,6 @@ stock Destroy3DMenu(MenuID)
  	MenuInfo[MenuID][IsExist] = false;
  	MenuInfo[MenuID][AddingX] = 0.0;
  	MenuInfo[MenuID][AddingY] = 0.0;
+ 	MenuInfo[MenuID][Player] = -1;
 	return 1;
 }
