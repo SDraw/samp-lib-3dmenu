@@ -3,19 +3,17 @@ This include allows you to create new type of menu instead of standart menus or 
 - Custom rotaion for menu.
 - Setting params for every box like for object.
 - Auto-calculatting of new lines and box position.
-- Limits: MAX_PLAYERS+10 menus and manual limited boxes (default is 16).
+- Limits: MAX_PLAYERS menus and manual limited boxes (default is 16).
 
 Requirements
 - 0.3e or upper SA-MP server.
 - Incognito's Streamer (0.3e and upper)
-- foreach
 
 Functions
 - Create3DMenu(Float: x,Float:y,Float:z,Float:rotation,boxes,playerid);
 -- Creating 3DMenu in position with number of boxes for player.
---- Note #1: If you want to all player see menu, use -1 in playerid param.
---- Note #2: Rotation should be equal from 0 to 360. Bigger or lower values will make menu works wrong.
---- Note #3: This function returns ID of created menu.
+--- Note #1: Rotation should be equal from 0 to 360. Bigger or lower values will make menu works wrong.
+--- Note #2: This function returns ID of created menu. It will return -1 if wrong player ID is setted.
 - SetBoxText(MenuID,box,text[],materialsize,fontface[],fontsize,bold,fontcolor,selectcolor,unselectcolor ,textalignment);
 -- Set box text, like object material text.
 --- Note #1: This function looks like SetObjectMaterialText.
@@ -29,8 +27,7 @@ Functions
 --- Note #1: This function will return -1 if player isn't choosing any menu.
 -Destroy3DMenu(MenuID);
 -- Destroying of menu.
---- Note #1: If any player chooses menu with current ID, function CancelSelect3DMenu will be called automatically.
---- Note #2: This function will return -1 if menu doesn't exist.
+--- Note #1: This function will return -1 if menu doesn't exist.
 
 Callbacks
 - OnPlayerChange3DMenuBox(playerid,MenuID,boxid);
