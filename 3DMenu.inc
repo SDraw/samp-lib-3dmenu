@@ -252,11 +252,7 @@ stock CancelSelect3DMenu(playerid)
 stock Destroy3DMenu(MenuID)
 {
     if(!MenuInfo[MenuID][IsExist]) return -1;
-    foreach(new i : Player)
-	{
-		if(SelectedMenu[i] != MenuID) continue;
-	 	CancelSelect3DMenu(i);
-	}
+    if(SelectedMenu[MenuInfo[MenuID][Player]] == MenuID) CancelSelect3DMenu(MenuInfo[MenuID][Player]);
     for(new i = 0; i < MenuInfo[MenuID][Boxes]; i++)
     {
 		DestroyDynamicObject(MenuInfo[MenuID][Objects][i]);
