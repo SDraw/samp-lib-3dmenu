@@ -3,7 +3,9 @@ This include allows you to create new type of menu instead of standart menus or 
 - Custom rotaion for menu.
 - Setting params for every box like for object.
 - Auto-calculatting of new lines and box position.
-- Limits: MAX_PLAYERS menus and manual limited boxes (default is 16).
+- Limits: MAX_PLAYERS menus, one menu per player (if you want to create more menus per player, 
+just change in #define MAX_3DMENUS from MAX_PLAYER to MAX_PLAYERS*N where N is number of menus 
+per player) and manual limited boxes (default is 16).
 
 Requirements
 - 0.3e or upper SA-MP server.
