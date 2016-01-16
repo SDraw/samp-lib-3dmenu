@@ -6,7 +6,7 @@ This include allows you to create new type of menu instead of standart menus or 
 
 ### Requirements
 * 0.3e or upper SA-MP server.
-* Incognito's Streamer (0.3e and upper)
+* [Streamer Plugin](https://github.com/samp-incognito/samp-streamer-plugin)
 
 ### Functions
 * Create3DMenu(playerid,Float: x,Float:y,Float:z,Float:rotation,boxes);
