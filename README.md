@@ -27,8 +27,8 @@ This include allows you to create new type of menu instead of standart menus or 
 
 ### Callbacks
 * OnPlayerChange3DMenuBox(playerid,boxid);
-  * This callback is called when player presses Y or N on selecting.
+  * This callback is called when player presses _MENU3D_KEY_UP_ or _MENU3D_KEY_DOWN_ on selecting.
     * Note #1: Param boxid is equal ID of choosen box.
 * OnPlayerSelect3DMenuBox(playerid,boxid);
-  * This callback is called when player presses Space on selecting.
+  * This callback is called when player presses _MENU3D_KEY_SELECT_ in selecting mode.
     * Note #1: Param selected is equal ID of selected box.
