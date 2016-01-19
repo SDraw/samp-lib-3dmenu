@@ -3,15 +3,14 @@
 #define MENU3D_KEY_UP KEY_YES
 #define MENU3D_KEY_SELECT KEY_SPRINT
 
-/* Fake natives. Thanks to TheArcher.
-native Create3DMenu(Float:x,Float:y,Float:z,Float:rotation,boxes,playerid);
-native SetBoxText(MenuID,box,text[],materialsize,fontface[],fontsize,bold,fontcolor,selectcolor,unselectcolor,textalignment);
-native Select3DMenu(playerid,MenuID);
+/*
+native playerid,Float:x,Float:y,Float:z,Float:rotation,boxes);
+native SetBoxText(playerid,box,text[],materialsize,fontface[],fontsize,bold,fontcolor,selectcolor,unselectcolor,textalignment);
+native Select3DMenu(playerid);
 native CancelSelect3DMenu(playerid);
-native Destroy3DMenu(MenuID);
+native Destroy3DMenu(playerid);
 */
 
-//Callbacks
 forward OnPlayerSelect3DMenuBox(playerid,boxid);
 forward OnPlayerChange3DMenuBox(playerid,boxid);
 
