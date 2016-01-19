@@ -4,7 +4,7 @@
 #define MENU3D_KEY_SELECT KEY_SPRINT
 
 /*
-native playerid,Float:x,Float:y,Float:z,Float:rotation,boxes);
+native Create3DMenu(playerid,Float:x,Float:y,Float:z,Float:rotation,boxes);
 native SetBoxText(playerid,box,text[],materialsize,fontface[],fontsize,bold,fontcolor,selectcolor,unselectcolor,textalignment);
 native Select3DMenu(playerid);
 native CancelSelect3DMenu(playerid);
