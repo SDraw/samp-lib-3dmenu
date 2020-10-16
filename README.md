@@ -1,4 +1,4 @@
-This include allows you to create new type of menu instead of standart menus or dialogs.
+This library allows you to create new type of menu instead of standart menus or dialogs.
 * Creating of menu for each player.
 * Custom rotaion for menu.
 * Setting params for every box like for object.
